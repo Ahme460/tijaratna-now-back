@@ -54,7 +54,7 @@ class Command(BaseCommand):
         
         users = []
         for i, name in enumerate(user_names):
-            phone = f'+2010{10000000 + i}'
+            phone = f'+2010{1000000 + i}'
             user, created = User.objects.get_or_create(
                 phone=phone,
                 defaults={
