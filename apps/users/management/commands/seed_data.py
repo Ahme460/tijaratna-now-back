@@ -10,7 +10,20 @@ class Command(BaseCommand):
     help = 'Seeds the database with test data'
 
     def handle(self, *args, **kwargs):
-        self.stdout.write('Seeding data...')
+        self.stdout.write('Clearing old data...')
+        
+        # Clear existing data in correct order to avoid foreign key issues
+        OrderItem.objects.all().delete()
+        Order.objects.all().delete()
+        ProductVariant.objects.all().delete()
+        Product.objects.all().delete()
+        Store.objects.all().delete()
+        Category.objects.all().delete()
+        # Delete all users except superusers
+        User.objects.filter(is_superuser=False).delete()
+        
+        self.stdout.write(self.style.SUCCESS('Data cleared!'))
+        self.stdout.write('Seeding new data...')
 
         # 1. Create Categories (20 categories - food related)
         food_categories = [
