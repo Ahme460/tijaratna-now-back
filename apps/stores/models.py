@@ -13,6 +13,7 @@ class Category(models.Model):
     class Meta:
         verbose_name = _('Category')
         verbose_name_plural = _('Categories')
+        ordering = ['name']
 
     def __str__(self):
         return self.name
@@ -35,6 +36,7 @@ class Store(models.Model):
     class Meta:
         verbose_name = _('Store')
         verbose_name_plural = _('Stores')
+        ordering = ['-created_at']
 
     def __str__(self):
         return self.name

@@ -21,6 +21,7 @@ class Product(models.Model):
     class Meta:
         verbose_name = _('Product')
         verbose_name_plural = _('Products')
+        ordering = ['-created_at']
 
     def __str__(self):
         return self.name
@@ -37,6 +38,7 @@ class ProductVariant(models.Model):
     class Meta:
         verbose_name = _('Product Variant')
         verbose_name_plural = _('Product Variants')
+        ordering = ['price']
 
     def __str__(self):
         return f"{self.product.name} - {self.size}"

@@ -45,6 +45,9 @@ class User(AbstractUser):
     USERNAME_FIELD = 'phone'
     REQUIRED_FIELDS = ['name']
 
+    class Meta:
+        ordering = ['-created_at']
+
     def __str__(self):
         return f"{self.name} ({self.phone})"
 

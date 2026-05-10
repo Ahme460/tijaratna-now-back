@@ -24,6 +24,7 @@ class Order(models.Model):
     class Meta:
         verbose_name = _('Order')
         verbose_name_plural = _('Orders')
+        ordering = ['-created_at']
 
     @property
     def order_number(self):
@@ -65,6 +66,7 @@ class OrderRating(models.Model):
     class Meta:
         verbose_name = _('Order Rating')
         verbose_name_plural = _('Order Ratings')
+        ordering = ['-created_at']
 
     def __str__(self):
         return f"Rating for Order {self.order.id} - {self.rating} stars"
