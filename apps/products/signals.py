@@ -26,7 +26,8 @@ def product_post_save(sender, instance, created, **kwargs):
     # نرسل تنبيه فقط عند إضافة منتج جديد وإذا كان المتجر مميزاً
     if created and instance.store.is_featured:
         title = "منتج جديد!"
-        message = f"التاجر {instance.store.name} أضاف منتج جديد: {instance.name}"
+        description_text = f"\nالوصف: {instance.description}" if instance.description else ""
+        message = f"التاجر {instance.store.name} أضاف منتج جديد: {instance.name}{description_text}"
         send_bulk_notification(title, message)
 
 @receiver(pre_save, sender=ProductVariant)
